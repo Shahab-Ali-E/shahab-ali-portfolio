@@ -1,5 +1,7 @@
 import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
 import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
+import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png";
+
 import SectionHeader from "@/components/SectionHeader";
 import Image from "next/image";
 import Card from "@/components/Card";
@@ -8,7 +10,7 @@ import { Fragment } from "react";
 const testimonials = [
   {
     name: "Abdullah Ishfaq",
-    position: "Video editor@ Upwork",
+    position: "Video editor @ Upwork",
     text: "Shahab's design boosted our app's performance and user engagement. His focus on smooth animations and user-friendly features made a huge impact.",
     avatar: memojiAvatar1,
   },
@@ -18,12 +20,14 @@ const testimonials = [
     text: "Working with Shahab's was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The application has exceeded our expectations.",
     avatar: memojiAvatar5,
   },
-  // {
-  //   name: "Daniel White",
-  //   position: "CEO @ InnovateCo",
-  //   text: "Alex's ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
-  //   avatar: memojiAvatar3,
-  // },
+  {
+    name: "Muhammad Umer",
+    position: "Video editor @ Upwork",
+    text: "Shahab's app is fantastic! Its user-friendly design has streamlined data management for my video editing agency. Smooth, well-designed, and highly effective—I highly recommend it!",
+    avatar: memojiAvatar3,
+  }
+  
+  
   // {
   //   name: "Emily Carter",
   //   position: "Product Manager @ GlobalTech",
@@ -50,7 +54,7 @@ export const TestimonialsSection = () => {
       
       {/* cards */}
       <div className="mt-14 lg:mt-20 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] py-6 -my-6">
-        <div className="flex flex-none gap-14 pr-14 md:gap-9 animate-tape-marquee [animation-duration:75s] hover:[animation-play-state:paused]">
+        <div className="flex flex-none gap-14 pr-14 md:gap-9 animate-tape-marquee [animation-duration:40s] hover:[animation-play-state:paused]">
           {[Array.from({length:2})].map((_,idx)=>(
             <Fragment key={idx}>
                 {testimonials.map((ele, index) => (

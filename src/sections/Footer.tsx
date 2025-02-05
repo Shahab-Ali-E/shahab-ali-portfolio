@@ -2,10 +2,9 @@ import ArrowUpRight from "@/assets/icons/arrow-up-right.svg";
 
 export const Footer = () => {
   const socialLinks = [
-    { title: "Youtube", href: "" },
-    { title: "Twitter", href: "" },
-    { title: "Instagram", href: "" },
-    { title: "LinkedIn", href: "" },
+    { title: "Github", href: "https://github.com/Shahab-Ali-E" },
+    { title: "Discord", href: "https://Discordapp.com/users/614865187257974826" },
+    { title: "LinkedIn", href: "http://www.linkedin.com/in/shahab-ali-9626812b6" },
   ];
   return (
     <footer className="relative lg:pt-10 overflow-x-clip z-0">
@@ -19,6 +18,7 @@ export const Footer = () => {
                 key={index}
                 href={link.href}
                 className="inline-flex items-center gap-1.5 m group"
+                target="_blank"
               >
                 <span className="font-semibold  md:text-sm">{link.title}</span>
                 <ArrowUpRight className="size-4 group-hover:-translate-y-[20%] group-hover:translate-x-[10%] transition ease-in-out duration-200 " />

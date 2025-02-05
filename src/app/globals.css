@@ -4,7 +4,7 @@
 
 @layer base{
     .nav-item {
-        @apply text-sm text-white/70 font-semibold rounded-full px-4 py-1.5 hover:bg-white/10 hover:text-white transition duration-300 cursor-pointer
+        @apply text-sm text-white/70 font-semibold rounded-full px-4 py-1.5 hover:bg-white/10 hover:text-white transition duration-300
     }
 
     .hero-section-ring{

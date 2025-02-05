@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import Card from "@/components/Card";
 import SectionHeader from "@/components/SectionHeader";
 
 import CardHeader from "@/components/CardHeader";
 import ToolBoxItem, { ToolboxItem } from "@/components/ToolBoxItem";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 
 import Image from "next/image";
@@ -30,9 +30,7 @@ import PythonIcon from "@/assets/icons/python.svg";
 import AWSS3 from "@/assets/icons/amazon-s3.svg";
 import PostgresSQLIcon from "@/assets/icons/postgresql.svg";
 import JenkinsIcon from "@/assets/icons/jenkins-1.svg";
-import RabbitMQIcon from "@/assets/icons/rabbitmq.svg"
-
-
+import RabbitMQIcon from "@/assets/icons/rabbitmq.svg";
 
 type HobbiesItem = {
   title: string;
@@ -108,7 +106,7 @@ const secondToolItem: ToolboxItem[] = [
   {
     title: "Github",
     icon: GithubIcon,
-  }
+  },
 ];
 const hobbies: HobbiesItem[] = [
   { title: "Gaming", emoji: "🎮", top: "10%", left: "23%" },
@@ -141,7 +139,11 @@ export const AboutSection = () => {
                 description="Explore the games which makes me enjoy"
               />
               <div className="absolute w-[86%] md:w-[82%] lg:w-[78%] h-[60%] rounded-t-3xl mx-auto mt-7 overflow-hidden">
-                <Image src={GameImage} alt="GOD of war game" className="object-cover h-full "/>
+                <Image
+                  src={GameImage}
+                  alt="Game image"
+                  className="object-cover h-full "
+                />
               </div>
             </Card>
 
@@ -153,8 +155,16 @@ export const AboutSection = () => {
                   description="Explore the technologies and tools I use to craft exceptional digital experiences."
                 />
               </div>
-              <ToolBoxItem items={firstToolBoxItem} className="mt-6" itemWrapperClassName="animate-tape-marquee [animation-duration:30s] pr-6 hover:[animation-play-state:paused]" />
-              <ToolBoxItem items={secondToolItem} className="mt-6" itemWrapperClassName="animate-move-right [animation-duration:15s] pr-6 hover:[animation-play-state:paused]"/>
+              <ToolBoxItem
+                items={firstToolBoxItem}
+                className="mt-6"
+                itemWrapperClassName="animate-tape-marquee [animation-duration:30s] pr-6 hover:[animation-play-state:paused]"
+              />
+              <ToolBoxItem
+                items={secondToolItem}
+                className="mt-6"
+                itemWrapperClassName="animate-move-right [animation-duration:15s] pr-6 hover:[animation-play-state:paused]"
+              />
             </Card>
           </div>
 
@@ -191,17 +201,26 @@ export const AboutSection = () => {
             </Card>
 
             {/* map */}
-            <Card className="relative z-0 md:col-span-2 lg:col-span-2">
-              <Image
-                src={MapImage}
-                alt="my location here"
-                className="-z-10 h-full w-full object-cover object-left-top"
-                unoptimized
-              />
-              <div className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:outline-gray-950/30 after:rounded-full">
-              <div className="absolute animate-ping  bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 rounded-full -z-20"></div>
-                <Image src={MapAvatar} alt="avatar here" className="size-20 z-20" />
-              </div>
+            <Card className="relative z-0 md:col-span-2 lg:col-span-2 cursor-pointer">
+              <a
+                href="https://www.google.com/maps?q=33.783220,72.352906" // Replace with your lat & long
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={MapImage}
+                  alt="my location here"
+                  className="-z-10 h-full w-full object-cover object-left-top"
+                />
+                <div className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:outline-gray-950/30 after:rounded-full">
+                  <div className="absolute animate-ping bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 rounded-full -z-20"></div>
+                  <Image
+                    src={MapAvatar}
+                    alt="avatar here"
+                    className="size-20 z-20"
+                  />
+                </div>
+              </a>
             </Card>
           </div>
         </div>

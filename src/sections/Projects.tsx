@@ -4,6 +4,9 @@ import AirHelpProjectImage2 from "@/assets/images/air-help-image-2.png";
 import SalahTrackerImage1 from "@/assets/images/salah-tracker-image1.png";
 import SalahTrackerImage2 from "@/assets/images/salah-tracker-image2.png";
 
+import AiCullShareImage1 from "@/assets/images/AiCullShareImage1.png";
+import AiCullShareImage2 from "@/assets/images/AiCullShareImage2.png";
+
 import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
 
 import Image from "next/image";
@@ -57,8 +60,8 @@ const portfolioProjects = [
       PostgreSQL,
     ],
     link: "https://youtu.be/4k7IdSLxh6w",
-    image1: aiStartupLandingPage,
-    image2: aiStartupLandingPage,
+    image1: AiCullShareImage1,
+    image2: AiCullShareImage2,
   },
 
   {
