@@ -59,7 +59,7 @@ const portfolioProjects = [
       Redis,
       PostgreSQL,
     ],
-    link: "https://youtu.be/4k7IdSLxh6w",
+    link: "https://www.linkedin.com/services/page/7163803345263770b4/",
     image1: AiCullShareImage1,
     image2: AiCullShareImage2,
   },
@@ -74,7 +74,7 @@ const portfolioProjects = [
       { title: "Enabled notifications in all app states" },
     ],
     tools: [ReactNative, Clerk, Zustand, FastAPI, Typescript, PostgreSQL],
-    link: "https://youtu.be/7hi5zwO75yc",
+    link: "https://www.linkedin.com/services/page/7163803345263770b4/",
     image1: AirHelpProjectImage1,
     image2: AirHelpProjectImage2,
   },
@@ -94,7 +94,7 @@ const portfolioProjects = [
       GoolgePlaces,
       // "Aladan API",
     ],
-    link: "https://youtu.be/Z7I5uSRHMHg",
+    link: "https://github.com/Shahab-Ali-E/mad-terminal-project",
     image1: SalahTrackerImage1,
     image2: SalahTrackerImage2,
   },
@@ -154,9 +154,9 @@ export const ProjectsSection = () => {
                       </li>
                     ))}
                   </ul>
-                  <a href="">
+                  <a href={ele.link} target="_blank">
                     <button className="inline-flex w-full sm:w-full md:w-auto sm:mx-auto px-6 items-center justify-center gap-2 bg-white text-gray-900 h-12 rounded-xl font-bold mt-8">
-                      Visit Live Site{" "}
+                      View{" "}
                       <ArrowUpRight className="size-4 font-bold" />
                     </button>
                   </a>
