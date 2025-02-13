@@ -16,7 +16,7 @@ const testimonials = [
   },
   {
     name: "Muhammad Kamran",
-    position: "Associate Professor @ Comsats University Islamabad",
+    position: "Lecturer @ Comsats University Islamabad",
     text: "Working with Shahab's was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The application has exceeded our expectations.",
     avatar: memojiAvatar5,
   },
