@@ -59,7 +59,7 @@ const portfolioProjects = [
       Redis,
       PostgreSQL,
     ],
-    link: "https://www.linkedin.com/services/page/7163803345263770b4/",
+    link: "https://ai-cull-share-eventize-frontend.vercel.app/",
     image1: AiCullShareImage1,
     image2: AiCullShareImage2,
   },
