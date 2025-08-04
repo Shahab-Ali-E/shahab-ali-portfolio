@@ -28,7 +28,6 @@ import GoolgePlaces from "@/assets/icons/google-places.svg";
 
 import Docker from "@/assets/icons/docker.svg";
 import Celery from "@/assets/icons/celery-svgrepo-com.svg";
-import Redis from "@/assets/icons/redis.svg";
 // import Github from "@/assets/icons/github-icon.svg";
 import FastAPI from "@/assets/icons/fastapi.svg";
 // import Python from "@/assets/icons/python.svg";
@@ -37,6 +36,11 @@ import PostgreSQL from "@/assets/icons/postgresql.svg";
 // import Jenkins from "@/assets/icons/jenkins-1.svg";
 // import RabbitMQ from "@/assets/icons/rabbitmq.svg";
 import ToolUsedIcons from "@/components/ToolUsedIcons";
+import GSAPIcon from "@/assets/icons/gsap-greensock.svg;";
+import FramerMotionIcon from "@/assets/icons/framer-motion.svg;";
+
+import ConnvoImg1 from "@/assets/images/connvo-landing-page-img-1.png";
+import ConnvoImg2 from "@/assets/images/connvo-landing-page-img-2.png";
 
 const portfolioProjects = [
   {
@@ -56,14 +60,27 @@ const portfolioProjects = [
       Typescript,
       AWSS3,
       Celery,
-      Redis,
       PostgreSQL,
+      Docker,
     ],
     link: "https://ai-cull-share-eventize-frontend.vercel.app/",
     image1: AiCullShareImage1,
     image2: AiCullShareImage2,
   },
-
+  {
+    company: "CONNVO",
+    year: "2025",
+    title: "CONNVO LANDING PAGE",
+    results: [
+      { title: "Built with Lennis & Framer Motion" },
+      { title: "Minimalistic animated UI with GSAP" },
+      { title: "Clean, responsive layout design" },
+    ],
+    tools: [NextJS, Typescript, GSAPIcon, FramerMotionIcon],
+    link: "https://connvo-landing-page.vercel.app/",
+    image1: ConnvoImg1,
+    image2: ConnvoImg2,
+  },
   {
     company: "Client Project",
     year: "2024",
@@ -156,16 +173,12 @@ export const ProjectsSection = () => {
                   </ul>
                   <a href={ele.link} target="_blank">
                     <button className="inline-flex w-full sm:w-full md:w-auto sm:mx-auto px-6 items-center justify-center gap-2 bg-white text-gray-900 h-12 rounded-xl font-bold mt-8">
-                      View{" "}
-                      <ArrowUpRight className="size-4 font-bold" />
+                      View <ArrowUpRight className="size-4 font-bold" />
                     </button>
                   </a>
                 </div>
                 <div className="absolute sm:hidden md:hidden lg:block right-0 w-1/2">
-                  <ProductFeatures
-                    image1={ele.image1}
-                    image2={ele.image2}
-                  />
+                  <ProductFeatures image1={ele.image1} image2={ele.image2} />
                 </div>
 
                 <div
