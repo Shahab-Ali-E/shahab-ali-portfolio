@@ -1,10 +1,10 @@
-import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
-import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
-import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png";
+import memojiAvatar1 from "../assets/images/memoji-avatar-1.png";
+import memojiAvatar5 from "../assets/images/memoji-avatar-5.png";
+import memojiAvatar3 from "../assets/images/memoji-avatar-3.png";
 
-import SectionHeader from "@/components/SectionHeader";
+import SectionHeader from "../components/SectionHeader";
 import Image from "next/image";
-import Card from "@/components/Card";
+import Card from "../components/Card";
 import { Fragment } from "react";
 
 const testimonials = [

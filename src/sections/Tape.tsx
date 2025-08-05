@@ -1,4 +1,4 @@
-import StarIcon from "@/assets/icons/star.svg";
+import StarIcon from "../assets/icons/star.svg";
 import { Fragment } from "react";
 
 export const TapeSection = () => {

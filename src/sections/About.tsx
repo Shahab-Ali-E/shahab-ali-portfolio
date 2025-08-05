@@ -1,36 +1,36 @@
 "use client";
 
-import Card from "@/components/Card";
-import SectionHeader from "@/components/SectionHeader";
+import Card from "../components/Card";
+import SectionHeader from "../components/SectionHeader";
 
-import CardHeader from "@/components/CardHeader";
-import ToolBoxItem, { ToolboxItem } from "@/components/ToolBoxItem";
+import CardHeader from "../components/CardHeader";
+import ToolBoxItem, { ToolboxItem } from "../components/ToolBoxItem";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
 import Image from "next/image";
-import GameImage from "@/assets/images/photo-collage.png";
-import MapAvatar from "@/assets/images/memoji-smile.png";
-import MapImage from "@/assets/images/map.png";
+import GameImage from "../assets/images/photo-collage.png";
+import MapAvatar from "../assets/images/memoji-smile.png";
+import MapImage from "../assets/images/map.png";
 
 // icons
-import JavascriptIcon from "@/assets/icons/javascript.svg";
-import ReactNativeIcon from "@/assets/icons/expo-go-app.svg";
-import TypescriptIcon from "@/assets/icons/typescript.svg";
-import NextJsIcon from "@/assets/icons/next-js.svg";
-import ReactIcon from "@/assets/icons/react.svg";
-import ReduxIcon from "@/assets/icons/redux.svg";
-import ZustandIcon from "@/assets/icons/zustand.svg";
-import ClerkIcon from "@/assets/icons/clerk.svg";
+import JavascriptIcon from "../assets/icons/javascript.svg";
+import ReactNativeIcon from "../assets/icons/expo-go-app.svg";
+import TypescriptIcon from "../assets/icons/typescript.svg";
+import NextJsIcon from "../assets/icons/next-js.svg";
+import ReactIcon from "../assets/icons/react.svg";
+import ReduxIcon from "../assets/icons/redux.svg";
+import ZustandIcon from "../assets/icons/zustand.svg";
+import ClerkIcon from "../assets/icons/clerk.svg";
 
-import DockerIcon from "@/assets/icons/docker.svg";
-import GithubIcon from "@/assets/icons/github-icon.svg";
-import FastApiIcon from "@/assets/icons/fastapi.svg";
-import PythonIcon from "@/assets/icons/python.svg";
-import AWSS3 from "@/assets/icons/amazon-s3.svg";
-import PostgresSQLIcon from "@/assets/icons/postgresql.svg";
-import JenkinsIcon from "@/assets/icons/jenkins-1.svg";
-import RabbitMQIcon from "@/assets/icons/rabbitmq.svg";
+import DockerIcon from "../assets/icons/docker.svg";
+import GithubIcon from "../assets/icons/github-icon.svg";
+import FastApiIcon from "../assets/icons/fastapi.svg";
+import PythonIcon from "../assets/icons/python.svg";
+import AWSS3 from "../assets/icons/amazon-s3.svg";
+import PostgresSQLIcon from "../assets/icons/postgresql.svg";
+import JenkinsIcon from "../assets/icons/jenkins-1.svg";
+import RabbitMQIcon from "../assets/icons/rabbitmq.svg";
 
 type HobbiesItem = {
   title: string;

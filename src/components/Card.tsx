@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import grainImage from "@/assets/images/grain.jpg";
+import grainImage from "../assets/images/grain.jpg";
 import { twMerge } from "tailwind-merge";
 
 function Card({ children, className, ...other }: ComponentPropsWithoutRef<"div">) {

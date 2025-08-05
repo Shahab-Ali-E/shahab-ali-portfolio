@@ -1,4 +1,4 @@
-import ArrowUpRight from "@/assets/icons/arrow-up-right.svg";
+import ArrowUpRight from "../assets/icons/arrow-up-right.svg";
 
 export const Footer = () => {
   const socialLinks = [

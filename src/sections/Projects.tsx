@@ -1,46 +1,46 @@
-import AirHelpProjectImage1 from "@/assets/images/air-help-image-1.png";
-import AirHelpProjectImage2 from "@/assets/images/air-help-image-2.png";
+import AirHelpProjectImage1 from "../assets/images/air-help-image-1.png";
+import AirHelpProjectImage2 from "../assets/images/air-help-image-2.png";
 
-import SalahTrackerImage1 from "@/assets/images/salah-tracker-image1.png";
-import SalahTrackerImage2 from "@/assets/images/salah-tracker-image2.png";
+import SalahTrackerImage1 from "../assets/images/salah-tracker-image1.png";
+import SalahTrackerImage2 from "../assets/images/salah-tracker-image2.png";
 
-import AiCullShareImage1 from "@/assets/images/AiCullShareImage1.png";
-import AiCullShareImage2 from "@/assets/images/AiCullShareImage2.png";
+import AiCullShareImage1 from "../assets/images/AiCullShareImage1.png";
+import AiCullShareImage2 from "../assets/images/AiCullShareImage2.png";
 
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
+import aiStartupLandingPage from "../assets/images/ai-startup-landing-page.png";
 
 import Image from "next/image";
-import CheckCircle from "@/assets/icons/check-circle.svg";
-import ArrowUpRight from "@/assets/icons/arrow-up-right.svg";
-import SectionHeader from "@/components/SectionHeader";
-import Card from "@/components/Card";
-import ProductFeatures from "@/components/ProjectFeatureCard";
+import CheckCircle from "../assets/icons/check-circle.svg";
+import ArrowUpRight from "../assets/icons/arrow-up-right.svg";
+import SectionHeader from "../components/SectionHeader";
+import Card from "../components/Card";
+import ProductFeatures from "../components/ProjectFeatureCard";
 
 // icons
-import Javascript from "@/assets/icons/javascript.svg";
-import ReactNative from "@/assets/icons/expo-go-app.svg";
-import Typescript from "@/assets/icons/typescript.svg";
-import NextJS from "@/assets/icons/next-js.svg";
-import Redux from "@/assets/icons/redux.svg";
-import Zustand from "@/assets/icons/zustand.svg";
-import Clerk from "@/assets/icons/clerk.svg";
-import GoolgePlaces from "@/assets/icons/google-places.svg";
+import Javascript from "../assets/icons/javascript.svg";
+import ReactNative from "../assets/icons/expo-go-app.svg";
+import Typescript from "../assets/icons/typescript.svg";
+import NextJS from "../assets/icons/next-js.svg";
+import Redux from "../assets/icons/redux.svg";
+import Zustand from "../assets/icons/zustand.svg";
+import Clerk from "../assets/icons/clerk.svg";
+import GoolgePlaces from "../assets/icons/google-places.svg";
 
-import Docker from "@/assets/icons/docker.svg";
-import Celery from "@/assets/icons/celery-svgrepo-com.svg";
-// import Github from "@/assets/icons/github-icon.svg";
-import FastAPI from "@/assets/icons/fastapi.svg";
-// import Python from "@/assets/icons/python.svg";
-import AWSS3 from "@/assets/icons/amazon-s3.svg";
-import PostgreSQL from "@/assets/icons/postgresql.svg";
-// import Jenkins from "@/assets/icons/jenkins-1.svg";
-// import RabbitMQ from "@/assets/icons/rabbitmq.svg";
-import ToolUsedIcons from "@/components/ToolUsedIcons";
-import GSAPIcon from "@/assets/icons/gsap-greensock.svg";
-import FramerMotionIcon from "@/assets/icons/framer-motion.svg";
+import Docker from "../assets/icons/docker.svg";
+import Celery from "../assets/icons/celery-svgrepo-com.svg";
+// import Github from "../assets/icons/github-icon.svg";
+import FastAPI from "../assets/icons/fastapi.svg";
+// import Python from "../assets/icons/python.svg";
+import AWSS3 from "../assets/icons/amazon-s3.svg";
+import PostgreSQL from "../assets/icons/postgresql.svg";
+// import Jenkins from "../assets/icons/jenkins-1.svg";
+// import RabbitMQ from "../assets/icons/rabbitmq.svg";
+import ToolUsedIcons from "../components/ToolUsedIcons";
+import GSAPIcon from "../assets/icons/gsap-greensock.svg";
+import FramerMotionIcon from "../assets/icons/framer-motion.svg";
 
-import ConnvoImg1 from "@/assets/images/connvo-landing-page-img-1.png";
-import ConnvoImg2 from "@/assets/images/connvo-landing-page-img-2.png";
+import ConnvoImg1 from "../assets/images/connvo-landing-page-img-1.png";
+import ConnvoImg2 from "../assets/images/connvo-landing-page-img-2.png";
 
 const portfolioProjects = [
   {

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Copy, Check } from "lucide-react";
-import Card from "@/components/Card";
+import Card from "../components/Card";
 
 export const ContactSection = () => {
   const [isOpen, setIsOpen] = useState(false);

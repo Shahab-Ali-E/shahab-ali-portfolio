@@ -1,5 +1,5 @@
 import React from "react";
-import StarIcon from "@/assets/icons/star.svg";
+import StarIcon from "../assets/icons/star.svg";
 
 interface CardHeaderProps {
   title: string;

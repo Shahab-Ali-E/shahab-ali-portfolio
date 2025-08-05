@@ -1,12 +1,12 @@
 "use client";
 
-import memoji_computer from "@/assets/images/memoji-computer.png";
+import memoji_computer from "../assets/images/memoji-computer.png";
 import Image from "next/image";
-import ArrowDown from "@/assets/icons/arrow-down.svg";
-import grainImage from "@/assets/images/grain.jpg";
-import HeroOrbit from "@/components/HeroOrbit";
-import StartIcon from "@/assets/icons/star.svg";
-import SparkleIcons from "@/assets/icons/sparkle.svg";
+import ArrowDown from "../assets/icons/arrow-down.svg";
+import grainImage from "../assets/images/grain.jpg";
+import HeroOrbit from "../components/HeroOrbit";
+import StartIcon from "../assets/icons/star.svg";
+import SparkleIcons from "../assets/icons/sparkle.svg";
 import { CloudDownload } from "lucide-react";
 
 export const HeroSection = () => {
