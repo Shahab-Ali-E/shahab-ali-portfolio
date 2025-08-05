@@ -39,8 +39,8 @@ import ToolUsedIcons from "../components/ToolUsedIcons";
 import GSAPIcon from "../assets/icons/gsap-greensock.svg";
 import FramerMotionIcon from "../assets/icons/framer-motion.svg";
 
-import ConnvoImg1 from "../assets/images/connvo-landing-page-img-1.png";
-import ConnvoImg2 from "../assets/images/connvo-landing-page-img-2.png";
+import ConnvoImg1 from "../assets/images/connvo_landing_page_img1.png";
+import ConnvoImg2 from "../assets/images/connvo_landing_page_img2.png";
 
 const portfolioProjects = [
   {
