@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, PropsWithoutRef } from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 import grainImage from "@/assets/images/grain.jpg";
 import { twMerge } from "tailwind-merge";
 

@@ -36,8 +36,8 @@ import PostgreSQL from "@/assets/icons/postgresql.svg";
 // import Jenkins from "@/assets/icons/jenkins-1.svg";
 // import RabbitMQ from "@/assets/icons/rabbitmq.svg";
 import ToolUsedIcons from "@/components/ToolUsedIcons";
-import GSAPIcon from "@/assets/icons/gsap-greensock.svg;";
-import FramerMotionIcon from "@/assets/icons/framer-motion.svg;";
+import GSAPIcon from "@/assets/icons/gsap-greensock.svg";
+import FramerMotionIcon from "@/assets/icons/framer-motion.svg";
 
 import ConnvoImg1 from "@/assets/images/connvo-landing-page-img-1.png";
 import ConnvoImg2 from "@/assets/images/connvo-landing-page-img-2.png";
