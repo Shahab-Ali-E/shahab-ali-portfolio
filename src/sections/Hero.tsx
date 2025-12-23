@@ -159,7 +159,7 @@ export const HeroSection = () => {
 
           <button className="inline-flex items-center gap-2 bg-white h-12 px-7 rounded-xl border border-white">
             <a
-              href="/Shahab_CV.pdf" 
+              href="/Shahab_Ali_CV.pdf" 
               download="shahab_cv"
               className="flex items-center gap-2"
             >
