@@ -6,14 +6,16 @@ interface CardHeaderProps {
   description: string;
 }
 
-const CardHeader: React.FC<CardHeaderProps> = ({title, description }) => {
+const CardHeader: React.FC<CardHeaderProps> = ({ title, description }) => {
   return (
     <div className="flex flex-col">
       <div className="inline-flex gap-2 items-center">
-      <StarIcon className="size-10 text-emerald-300" />
-        <h3 className="font-serif text-3xl">{title}</h3>
+        <StarIcon className="size-9 text-emerald-400" aria-hidden="true" />
+        <h3 className="font-serif text-2xl text-[var(--text)]">{title}</h3>
       </div>
-      <p className="text-white/60 text-sm lg:text-base mt-1 lg:w-3/4">{description}</p>
+      <p className="text-[var(--text-muted)] text-sm lg:text-base mt-1 lg:w-3/4">
+        {description}
+      </p>
     </div>
   );
 };

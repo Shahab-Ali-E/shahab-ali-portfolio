@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, useEffect } from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 import grainImage from "../assets/images/grain.jpg";
 import { twMerge } from "tailwind-merge";
 
@@ -10,18 +10,16 @@ function Card({
   return (
     <div
       className={twMerge(
-        "outline outline-2 outline-white/20 rounded-3xl bg-gray-800 relative z-0 overflow-hidden",
+        "outline outline-1 outline-white/10 rounded-2xl bg-[var(--surface)] relative z-0 overflow-hidden",
         className
       )}
       {...other}
     >
-      {/* Background grain texture Image Layer */}
       <div
-        className="absolute inset-0 -z-10 opacity-5"
-        style={{
-          backgroundImage: `url(${grainImage.src})`,
-        }}
-      ></div>
+        className="absolute inset-0 -z-10 opacity-[0.04]"
+        style={{ backgroundImage: `url(${grainImage.src})` }}
+        aria-hidden="true"
+      />
       {children}
     </div>
   );
