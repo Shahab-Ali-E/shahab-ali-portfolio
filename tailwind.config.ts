@@ -21,6 +21,15 @@ const config: Config = {
       },
     },
     extend: {
+      colors: {
+        bg: "var(--bg)",
+        surface: "var(--surface)",
+        primary: "var(--primary)",
+        "primary-soft": "var(--primary-soft)",
+        accent: "var(--accent)",
+        "text-base": "var(--text)",
+        "text-muted": "var(--text-muted)",
+      },
       fontFamily: {
         sans: "var(--font-sans)",
         serif: "var(--font-serif)",
@@ -28,7 +37,7 @@ const config: Config = {
       animation: {
         "ping-large": "ping-large 1s ease-in-out infinite",
         "tape-marquee": "tape-marquee 30s linear infinite",
-        "move-right":"move-right 30s linear infinite"
+        "move-right": "move-right 30s linear infinite",
       },
       keyframes: {
         "ping-large": {
@@ -38,20 +47,12 @@ const config: Config = {
           },
         },
         "tape-marquee": {
-          "0%": {
-            transform: "translateX(0%)", // Start at the initial position
-          },
-          "100%": {
-            transform: "translateX(-50%)", // Move completely to the left
-          },
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
         "move-right": {
-          "0%": {
-            transform: "translateX(-50%)", // Start at the initial position
-          },
-          "100%": {
-            transform: "translateX(0%)", // Move completely to the right
-          },
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
         },
       },
     },

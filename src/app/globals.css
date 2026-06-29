@@ -2,18 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-    .nav-item {
-        @apply text-sm text-white/70 font-semibold rounded-full px-4 py-1.5 hover:bg-white/10 hover:text-white transition duration-300
-    }
-
-    .hero-section-ring{
-        @apply absolute inset-0 border border-emerald-300/5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full shadow-[0_0_80px_inset] shadow-emerald-300/5
-    }
+:root {
+  --bg: #0a0c0f;
+  --surface: #11151a;
+  --border: rgba(255, 255, 255, 0.08);
+  --primary: #34d399;
+  --primary-soft: #6ee7b7;
+  --accent: #38bdf8;
+  --text: #e6eaef;
+  --text-muted: #9aa4b2;
 }
 
-@layer utilities{
-    .container{
-        @apply lg:max-w-5xl
-    }
+/* Lenis smooth scroll */
+html {
+  scroll-behavior: auto;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@layer base {
+  .nav-item {
+    @apply text-sm font-semibold rounded-full px-4 py-1.5 transition duration-300;
+    color: var(--text-muted);
+  }
+  .nav-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+  }
+  .hero-section-ring {
+    @apply absolute inset-0 border border-emerald-300/5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply lg:max-w-5xl;
+  }
+}
+
+/* Dot grid texture */
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* Aurora hero animation */
+@keyframes aurora-shift {
+  0% {
+    opacity: 0.65;
+    transform: scale(1) translateY(0px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04) translateY(-12px);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scale(1) translateY(0px);
+  }
+}
+
+.hero-aurora {
+  animation: aurora-shift 10s ease-in-out infinite;
+}
+
+/* Disable all motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora {
+    animation: none;
+  }
+  .animate-spin,
+  .animate-ping,
+  .animate-ping-large,
+  .animate-tape-marquee,
+  .animate-move-right {
+    animation: none;
+  }
 }
