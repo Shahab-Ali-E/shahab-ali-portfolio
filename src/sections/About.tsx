@@ -2,18 +2,32 @@
 
 import Card from "../components/Card";
 import SectionHeader from "../components/SectionHeader";
-
 import CardHeader from "../components/CardHeader";
 import ToolBoxItem, { ToolboxItem } from "../components/ToolBoxItem";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
-
 import Image from "next/image";
-import GameImage from "../assets/images/photo-collage.png";
 import MapAvatar from "../assets/images/memoji-smile.png";
 import MapImage from "../assets/images/map.png";
+import { MapPin, Building2 } from "lucide-react";
 
-// icons
+// lucide icons as ServiceNow tool proxies
+import {
+  Settings2,
+  Users,
+  Database,
+  Search,
+  GitMerge,
+  Code2,
+  Server,
+  Globe,
+  Monitor,
+  Package,
+  Webhook,
+  FlaskConical,
+} from "lucide-react";
+
+// full-stack icons
 import JavascriptIcon from "../assets/icons/javascript.svg";
 import ReactNativeIcon from "../assets/icons/expo-go-app.svg";
 import TypescriptIcon from "../assets/icons/typescript.svg";
@@ -21,8 +35,6 @@ import NextJsIcon from "../assets/icons/next-js.svg";
 import ReactIcon from "../assets/icons/react.svg";
 import ReduxIcon from "../assets/icons/redux.svg";
 import ZustandIcon from "../assets/icons/zustand.svg";
-import ClerkIcon from "../assets/icons/clerk.svg";
-
 import DockerIcon from "../assets/icons/docker.svg";
 import GithubIcon from "../assets/icons/github-icon.svg";
 import FastApiIcon from "../assets/icons/fastapi.svg";
@@ -39,75 +51,42 @@ type HobbiesItem = {
   left: string;
 };
 
-const firstToolBoxItem: ToolboxItem[] = [
-  {
-    title: "Javascript",
-    icon: JavascriptIcon,
-  },
-  {
-    title: "Typescript",
-    icon: TypescriptIcon,
-  },
-  {
-    title: "React Native",
-    icon: ReactNativeIcon,
-  },
-  {
-    title: "React",
-    icon: ReactIcon,
-  },
-  {
-    title: "Redux",
-    icon: ReduxIcon,
-  },
-  {
-    title: "Zustand",
-    icon: ZustandIcon,
-  },
-  {
-    title: "NextJS",
-    icon: NextJsIcon,
-  },
-  {
-    title: "Clerk",
-    icon: ClerkIcon,
-  },
+const serviceNowTools: ToolboxItem[] = [
+  { title: "ITSM", icon: Settings2 },
+  { title: "HRSD", icon: Users },
+  { title: "CMDB", icon: Database },
+  { title: "Discovery", icon: Search },
+  { title: "Flow Designer", icon: GitMerge },
+  { title: "Script Includes", icon: Code2 },
+  { title: "MID Server", icon: Server },
+  { title: "Service Portal", icon: Globe },
+  { title: "Agent Workspace", icon: Monitor },
+  { title: "Update Sets", icon: Package },
+  { title: "REST / SOAP", icon: Webhook },
+  { title: "ATF", icon: FlaskConical },
 ];
 
-const secondToolItem: ToolboxItem[] = [
-  {
-    title: "FastAPI",
-    icon: FastApiIcon,
-  },
-  {
-    title: "Python",
-    icon: PythonIcon,
-  },
-  {
-    title: "PostgreSQL",
-    icon: PostgresSQLIcon,
-  },
-  {
-    title: "RabbitMQ",
-    icon: RabbitMQIcon,
-  },
-  {
-    title: "AWS S3",
-    icon: AWSS3,
-  },
-  {
-    title: "Jenkins",
-    icon: JenkinsIcon,
-  },
-  {
-    title: "Docker",
-    icon: DockerIcon,
-  },
-  {
-    title: "Github",
-    icon: GithubIcon,
-  },
+const frontendTools: ToolboxItem[] = [
+  { title: "JavaScript", icon: JavascriptIcon },
+  { title: "TypeScript", icon: TypescriptIcon },
+  { title: "React", icon: ReactIcon },
+  { title: "Next.js", icon: NextJsIcon },
+  { title: "React Native", icon: ReactNativeIcon },
+  { title: "Redux", icon: ReduxIcon },
+  { title: "Zustand", icon: ZustandIcon },
 ];
+
+const backendTools: ToolboxItem[] = [
+  { title: "FastAPI", icon: FastApiIcon },
+  { title: "Python", icon: PythonIcon },
+  { title: "PostgreSQL", icon: PostgresSQLIcon },
+  { title: "RabbitMQ", icon: RabbitMQIcon },
+  { title: "AWS S3", icon: AWSS3 },
+  { title: "Jenkins", icon: JenkinsIcon },
+  { title: "Docker", icon: DockerIcon },
+  { title: "GitHub", icon: GithubIcon },
+];
+
 const hobbies: HobbiesItem[] = [
   { title: "Gaming", emoji: "🎮", top: "10%", left: "23%" },
   { title: "Gym", emoji: "🏋️", top: "40%", left: "27%" },
@@ -118,6 +97,17 @@ const hobbies: HobbiesItem[] = [
 
 export const AboutSection = () => {
   const constraintRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  const fadeUp = (delay = 0) =>
+    reduced
+      ? {}
+      : {
+          initial: { opacity: 0, y: 24 },
+          whileInView: { opacity: 1, y: 0 },
+          transition: { duration: 0.5, delay, ease: "easeOut" },
+          viewport: { once: true, margin: "-10%" },
+        };
 
   return (
     <section className="py-20 lg:py-32" id="about-section">
@@ -128,100 +118,132 @@ export const AboutSection = () => {
           paragraph="Learn more about who I am, what I do, and what inspires me."
         />
 
-        {/* other content */}
-        <div className="mt-[85px] flex flex-col gap-9">
-          {/* 1st grid */}
-          <div className="grid grid-cols-1 gap-8 md:grid md:grid-cols-5 lg:grid-cols-6 md:gap-8">
-            {/* my games */}
-            <Card className="p-6 lg:p-8 h-[320px] md:col-span-2 lg:col-span-2">
-              <CardHeader
-                title="My Games"
-                description="Explore the games which makes me enjoy"
-              />
-              <div className="absolute w-[86%] md:w-[82%] lg:w-[78%] h-[60%] rounded-t-3xl mx-auto mt-7 overflow-hidden">
-                <Image
-                  src={GameImage}
-                  alt="Game image"
-                  className="object-cover h-full "
-                />
-              </div>
-            </Card>
-
-            {/* my toolbox */}
-            <Card className="h-[320px] md:col-span-3 lg:col-span-4 ">
-              <div className="px-6 pt-6">
+        <div className="mt-16 flex flex-col gap-8">
+          {/* Row 1 */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-6">
+            {/* Bio card */}
+            <motion.div
+              className="md:col-span-2 lg:col-span-2"
+              {...fadeUp(0)}
+            >
+              <Card className="p-6 lg:p-8 h-[320px] flex flex-col border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
                 <CardHeader
-                  title="My Toolbox"
-                  description="Explore the technologies and tools I use to craft exceptional digital experiences."
+                  title="Who I Am"
+                  description="ServiceNow developer with full-stack roots"
                 />
-              </div>
-              <ToolBoxItem
-                items={firstToolBoxItem}
-                className="mt-6"
-                itemWrapperClassName="animate-tape-marquee [animation-duration:30s] pr-6 hover:[animation-play-state:paused]"
-              />
-              <ToolBoxItem
-                items={secondToolItem}
-                className="mt-6"
-                itemWrapperClassName="animate-move-right [animation-duration:15s] pr-6 hover:[animation-play-state:paused]"
-              />
-            </Card>
-          </div>
+                <div className="mt-4 flex flex-col gap-3 text-sm text-[var(--text-muted)]">
+                  <p>
+                    Building HRSD workflows, Discovery & CMDB automation at Tekdex.
+                    Previously shipped production integrations at Techrystal connecting
+                    ServiceNow to FreshService, Jira, Slack, and Salesforce.
+                  </p>
+                  <div className="flex items-center gap-2 mt-auto">
+                    <MapPin className="size-4 text-emerald-400 shrink-0" aria-hidden="true" />
+                    <span>Rawalpindi, Pakistan · Open to NZ relocation</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Building2 className="size-4 text-emerald-400 shrink-0" aria-hidden="true" />
+                    <span>BS Software Engineering · COMSATS 2021–2025</span>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
 
-          {/* second grid */}
-          <div className="grid grid-cols-1 gap-8 md:grid md:grid-cols-5 md:gap-8 lg:grid-cols-6">
-            {/* my hobbies */}
-            <Card className="h-[320px] flex flex-col md:col-span-3 lg:col-span-4">
-              <div className="p-6">
-                <CardHeader
-                  title="Beyond The Code"
-                  description="Explore my interests and hobbies beyond the digital realm"
-                />
-              </div>
-              <div className="relative flex-1" ref={constraintRef}>
-                {hobbies.map((ele, index) => (
-                  <motion.div
-                    key={index}
-                    className="absolute flex items-center gap-2 bg-gradient-to-t from-emerald-300 to-sky-400 rounded-full py-1.5 px-4 shadow-lg"
-                    style={{
-                      top: ele.top,
-                      left: ele.left,
-                      transform: "translate(-50%, -50%)", // Centers items correctly
-                    }}
-                    drag
-                    dragConstraints={constraintRef}
-                  >
-                    <span className="text-gray-900 font-extrabold">
-                      {ele.title}
-                    </span>
-                    <span className="text-lg">{ele.emoji}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </Card>
-
-            {/* map */}
-            <Card className="relative z-0 md:col-span-2 lg:col-span-2 cursor-pointer">
-              <a
-                href="https://www.google.com/maps?q=33.783220,72.352906" // Replace with your lat & long
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={MapImage}
-                  alt="my location here"
-                  className="-z-10 h-full w-full object-cover object-left-top"
-                />
-                <div className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:outline-gray-950/30 after:rounded-full">
-                  <div className="absolute animate-ping bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 rounded-full -z-20"></div>
-                  <Image
-                    src={MapAvatar}
-                    alt="avatar here"
-                    className="size-20 z-20"
+            {/* Toolbox */}
+            <motion.div
+              className="md:col-span-3 lg:col-span-4"
+              {...fadeUp(0.1)}
+            >
+              <Card className="h-[320px] border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
+                <div className="px-6 pt-6">
+                  <CardHeader
+                    title="My Toolbox"
+                    description="Technologies I use across ServiceNow, frontend, and backend."
                   />
                 </div>
-              </a>
-            </Card>
+                <ToolBoxItem
+                  items={serviceNowTools}
+                  className="mt-5"
+                  itemWrapperClassName="animate-tape-marquee [animation-duration:28s] pr-6 hover:[animation-play-state:paused]"
+                />
+                <ToolBoxItem
+                  items={frontendTools}
+                  className="mt-4"
+                  itemWrapperClassName="animate-move-right [animation-duration:22s] pr-6 hover:[animation-play-state:paused]"
+                />
+                <ToolBoxItem
+                  items={backendTools}
+                  className="mt-4"
+                  itemWrapperClassName="animate-tape-marquee [animation-duration:26s] pr-6 hover:[animation-play-state:paused]"
+                />
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Row 2 */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-6">
+            {/* Hobbies */}
+            <motion.div
+              className="md:col-span-3 lg:col-span-4"
+              {...fadeUp(0.2)}
+            >
+              <Card className="h-[320px] flex flex-col border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
+                <div className="p-6">
+                  <CardHeader
+                    title="Beyond The Code"
+                    description="Interests and hobbies beyond the digital realm"
+                  />
+                </div>
+                <div className="relative flex-1" ref={constraintRef}>
+                  {hobbies.map((ele, index) => (
+                    <motion.div
+                      key={index}
+                      className="absolute flex items-center gap-2 bg-gradient-to-t from-emerald-300 to-sky-400 rounded-full py-1.5 px-4 shadow-lg cursor-grab active:cursor-grabbing"
+                      style={{
+                        top: ele.top,
+                        left: ele.left,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      drag={!reduced}
+                      dragConstraints={constraintRef}
+                      aria-label={`Hobby: ${ele.title}`}
+                    >
+                      <span className="text-gray-900 font-extrabold">{ele.title}</span>
+                      <span className="text-lg" aria-hidden="true">{ele.emoji}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Map */}
+            <motion.div
+              className="md:col-span-2 lg:col-span-2"
+              {...fadeUp(0.3)}
+            >
+              <Card className="relative z-0 h-full border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none overflow-hidden cursor-pointer">
+                <a
+                  href="https://www.google.com/maps?q=33.783220,72.352906"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View location on Google Maps — Rawalpindi, Pakistan"
+                >
+                  <Image
+                    src={MapImage}
+                    alt="Map showing Rawalpindi, Pakistan"
+                    className="-z-10 h-full w-full object-cover object-left-top"
+                  />
+                  <div className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:outline-gray-950/30 after:rounded-full">
+                    <div className="absolute animate-ping bg-gradient-to-r from-emerald-300 to-sky-400 h-20 w-20 rounded-full -z-20" />
+                    <Image
+                      src={MapAvatar}
+                      alt="Shahab Ali Hassan avatar"
+                      className="size-20 z-20"
+                    />
+                  </div>
+                </a>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </div>
