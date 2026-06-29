@@ -1,175 +1,184 @@
 "use client";
 
-import memoji_computer from "../assets/images/memoji-computer.png";
 import Image from "next/image";
-import ArrowDown from "../assets/icons/arrow-down.svg";
+import { motion, useReducedMotion, useMotionValue, useSpring } from "framer-motion";
+import { ArrowRight, CloudDownload } from "lucide-react";
+import { useCallback, type MouseEvent } from "react";
+import memoji_computer from "../assets/images/memoji-computer.png";
 import grainImage from "../assets/images/grain.jpg";
-import HeroOrbit from "../components/HeroOrbit";
-import StartIcon from "../assets/icons/star.svg";
-import SparkleIcons from "../assets/icons/sparkle.svg";
-import { CloudDownload } from "lucide-react";
+import { useLenis } from "../components/SmoothScroll";
+
+function MagneticButton({
+  children,
+  className,
+  onClick,
+  href,
+  download,
+}: {
+  children: React.ReactNode;
+  className: string;
+  onClick?: () => void;
+  href?: string;
+  download?: string;
+}) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 300, damping: 30 });
+  const springY = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const handleMove = (e: MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - (rect.left + rect.width / 2)) * 0.25);
+    y.set((e.clientY - (rect.top + rect.height / 2)) * 0.25);
+  };
+
+  const handleLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        download={download}
+        style={{ x: springX, y: springY }}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        className={className}
+      >
+        {children}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button
+      style={{ x: springX, y: springY }}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      className={className}
+      onClick={onClick}
+    >
+      {children}
+    </motion.button>
+  );
+}
 
 export const HeroSection = () => {
+  const lenisRef = useLenis();
+  const reduced = useReducedMotion();
+
+  const scrollToServiceNow = useCallback(() => {
+    const lenis = lenisRef?.current;
+    lenis
+      ? lenis.scrollTo("#servicenow-section")
+      : document
+          .querySelector("#servicenow-section")
+          ?.scrollIntoView({ behavior: "smooth" });
+  }, [lenisRef]);
+
+  const fadeUp = (delay = 0) =>
+    reduced
+      ? {}
+      : {
+          initial: { opacity: 0, y: 24 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.7, delay, ease: "easeOut" },
+        };
+
   return (
-    <section className="py-32 md:py-48 lg:py-60 z-0 relative overflow-x-clip">
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_70%,transparent)] -z-30">
+    <section
+      className="py-32 md:py-48 lg:py-60 relative overflow-x-clip"
+      id="hero-section"
+    >
+      {/* ── Background layers ── */}
+      <div className="absolute inset-0 -z-20 [mask-image:linear-gradient(to_bottom,transparent,black_8%,black_72%,transparent)]">
+        {/* Film grain at low opacity */}
         <div
-          className="absolute inset-0 -z-30 opacity-5"
-          style={{
-            backgroundImage: `url(${grainImage.src})`,
-          }}
-        ></div>
-
-        {/* rings */}
-        <div className="size-[620px] hero-section-ring"></div>
-        <div className="size-[820px] hero-section-ring"></div>
-        <div className="size-[1020px] hero-section-ring"></div>
-        <div className="size-[1220px] hero-section-ring"></div>
-        {/* green stars */}
-        <HeroOrbit
-          size={800}
-          rotation={-72}
-          shouldOrbit
-          orbitDuration={30}
-          shoutdSpin
-          spinDuration={7}
-        >
-          <StartIcon className="size-28 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={550}
-          rotation={20}
-          shouldOrbit
-          orbitDuration={32}
-          shoutdSpin
-          spinDuration={7}
-        >
-          <StartIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={590}
-          rotation={98}
-          shouldOrbit
-          orbitDuration={34}
-          shoutdSpin
-          spinDuration={7}
-        >
-          <StartIcon className="size-8 text-emerald-300" />
-        </HeroOrbit>
-
-        {/* sparkle icons */}
-        <HeroOrbit
-          size={710}
-          rotation={144}
-          shouldOrbit
-          orbitDuration={36}
-          shoutdSpin
-          spinDuration={3}
-        >
-          <SparkleIcons className="size-14 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={533}
-          rotation={178}
-          shouldOrbit
-          orbitDuration={38}
-          shoutdSpin
-          spinDuration={3}
-        >
-          <SparkleIcons className="size-10 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={430}
-          rotation={-14}
-          shouldOrbit
-          orbitDuration={40}
-          shoutdSpin
-          spinDuration={3}
-        >
-          <SparkleIcons className="size-8 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={440}
-          rotation={79}
-          shouldOrbit
-          orbitDuration={42}
-          shoutdSpin
-          spinDuration={3}
-        >
-          <SparkleIcons className="size-5 text-emerald-300/20" />
-        </HeroOrbit>
-
-        {/* dots */}
-        <HeroOrbit size={720} rotation={85} shouldOrbit orbitDuration={44}>
-          <div className="size-3 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={650} rotation={-5} shouldOrbit orbitDuration={46}>
-          <div className="size-2 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={520} rotation={-41} shouldOrbit orbitDuration={48}>
-          <div className="size-2 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
+          className="absolute inset-0 opacity-[0.035]"
+          style={{ backgroundImage: `url(${grainImage.src})` }}
+          aria-hidden="true"
+        />
+        {/* Fine dot grid */}
+        <div className="absolute inset-0 dot-grid" aria-hidden="true" />
+        {/* Aurora gradient blobs */}
+        <div className="hero-aurora absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-[30%] left-[15%] w-[560px] h-[380px] bg-emerald-400/[0.11] rounded-full blur-[130px]" />
+          <div className="absolute top-[20%] right-[10%] w-[380px] h-[280px] bg-sky-400/[0.07] rounded-full blur-[110px]" />
+          <div className="absolute bottom-[20%] left-[40%] w-[460px] h-[320px] bg-emerald-300/[0.07] rounded-full blur-[150px]" />
+        </div>
+        {/* Single slow-rotating accent ring */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[700px] rounded-full border border-emerald-300/[0.06] animate-spin"
+          style={{ animationDuration: "70s" }}
+          aria-hidden="true"
+        />
       </div>
+
+      {/* ── Content ── */}
       <div className="container">
-        {/* for image and avaliable for work */}
-        <div className="flex flex-col items-center z-20">
+        <div className="flex flex-col items-center">
           <Image
             src={memoji_computer}
-            alt="Person peeking into laptop"
+            alt="Shahab Ali Hassan working at a laptop"
             className="size-[100px]"
+            priority
           />
-          <div className="flex items-center py-1.5 px-4 border-gray-800 gap-[15px] rounded-lg bg-gray-950 ">
-            {/* for dot */}
-            <div className="relative size-2.5 bg-green-500 rounded-full">
-              <div className="absolute inset-0 size-2.5 bg-green-500 rounded-full animate-ping-large"></div>
+          <div className="flex items-center py-1.5 px-4 border border-[var(--border)] gap-3 rounded-lg bg-[var(--surface)] mt-4">
+            <div className="relative size-2.5 bg-emerald-400 rounded-full">
+              <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping-large" />
             </div>
-            {/* for avaliable for work */}
-            <p className="text-sm text-white/90 font-semibold">
-              Avaliable for new projects
+            <p className="text-sm font-semibold text-[var(--text)]">
+              Available for new projects
             </p>
           </div>
         </div>
-        <div className="max-w-lg mx-auto z-20">
-          <h1 className="mt-5 text-center font-serif text-3xl md:text-5xl tracking-wide">
-            <span className="text-white/50">Hi, I am </span>
-            <br />
-            <span>Shahab Ali Hassan</span>
-          </h1>
-          <p className="text-center mt-6 text-white/60 md:text-lg">
-            I specialize in developing both mobile apps and web apps,
-            transforming designs into functional, high-performing applications.
-            Let&apos;s discuss your next project.
-          </p>
-        </div>
-        {/* buttons */}
-        <div className="flex flex-col md:flex-row md:justify-center items-center mt-8 gap-4 z-20">
-          {/* Explore my work */}
-          <button
-            className="inline-flex items-center gap-2 border-emerald-300/40 h-12 px-6 border rounded-xl"
-            onClick={() => {
-              document.querySelector("#project-section")?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }}
-          >
-            <span className="text-white font-semibold">Explore My Work</span>
-            <ArrowDown className="size-4" />
-          </button>
 
-          <button className="inline-flex items-center gap-2 bg-white h-12 px-7 rounded-xl border border-white">
-            <a
-              href="/shahab_ali_ge_cv.pdf" 
-              download="shahab_ali_ge_cv"
-              className="flex items-center gap-2"
-            >
-              <span className="text-gray-950 font-semibold">Download CV</span>
-              <span className="transition ease-in-out duration-300 text-xl">
-                <CloudDownload className="w-5 h-5 text-black" />
-              </span>
-            </a>
-          </button>
+        <div className="max-w-2xl mx-auto mt-8">
+          <motion.h1
+            className="text-center font-serif text-3xl md:text-5xl lg:text-[3.25rem] tracking-tight leading-[1.15]"
+            {...fadeUp(0)}
+          >
+            <span className="text-[var(--text-muted)]">I build and automate </span>
+            <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
+              enterprise platforms
+            </span>
+            <span className="text-[var(--text-muted)]">
+              {" "}on ServiceNow — and ship the full stack around them.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-center mt-6 text-[var(--text-muted)] md:text-lg"
+            {...fadeUp(0.15)}
+          >
+            ServiceNow developer (ITSM, HRSD, integrations) with full-stack roots
+            in Next.js, FastAPI and Python.
+          </motion.p>
         </div>
+
+        <motion.div
+          className="flex flex-col md:flex-row md:justify-center items-center mt-10 gap-4"
+          {...fadeUp(0.3)}
+        >
+          <MagneticButton
+            className="inline-flex items-center gap-2 bg-[var(--primary)] text-gray-950 h-12 px-7 rounded-lg font-bold hover:bg-[var(--primary-soft)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
+            onClick={scrollToServiceNow}
+          >
+            View ServiceNow Work
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </MagneticButton>
+
+          <MagneticButton
+            href="/shahab_ali_ge_cv.pdf"
+            download="shahab_ali_hassan_cv"
+            className="inline-flex items-center gap-2 border border-[var(--border)] h-12 px-6 rounded-lg font-semibold text-[var(--text)] hover:bg-white/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/30"
+          >
+            Download CV
+            <CloudDownload className="size-4" aria-hidden="true" />
+          </MagneticButton>
+        </motion.div>
       </div>
     </section>
   );
