@@ -6,6 +6,9 @@ import { ArrowRight, CloudDownload } from "lucide-react";
 import { useCallback, type MouseEvent } from "react";
 import memoji_computer from "../assets/images/memoji-computer.png";
 import grainImage from "../assets/images/grain.jpg";
+import HeroOrbit from "../components/HeroOrbit";
+import StartIcon from "../assets/icons/star.svg";
+import SparkleIcons from "../assets/icons/sparkle.svg";
 import { useLenis } from "../components/SmoothScroll";
 
 function MagneticButton({
@@ -75,8 +78,8 @@ export const HeroSection = () => {
       ? lenis.scrollTo("#servicenow-section")
       : document
           .querySelector("#servicenow-section")
-          ?.scrollIntoView({ behavior: "smooth" });
-  }, [lenisRef]);
+          ?.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+  }, [lenisRef, reduced]);
 
   const fadeUp = (delay = 0) =>
     reduced
@@ -89,31 +92,85 @@ export const HeroSection = () => {
 
   return (
     <section
-      className="py-32 md:py-48 lg:py-60 relative overflow-x-clip"
+      className="pt-24 pb-16 md:pt-32 md:pb-20 lg:pt-36 lg:pb-24 relative overflow-x-clip"
       id="hero-section"
     >
       {/* ── Background layers ── */}
-      <div className="absolute inset-0 -z-20 [mask-image:linear-gradient(to_bottom,transparent,black_8%,black_72%,transparent)]">
-        {/* Film grain at low opacity */}
+      <div
+        className="absolute inset-0 -z-20 [mask-image:linear-gradient(to_bottom,transparent,black_8%,black_72%,transparent)]"
+        aria-hidden="true"
+      >
+        {/* Film grain */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{ backgroundImage: `url(${grainImage.src})` }}
-          aria-hidden="true"
         />
         {/* Fine dot grid */}
-        <div className="absolute inset-0 dot-grid" aria-hidden="true" />
-        {/* Aurora gradient blobs */}
-        <div className="hero-aurora absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-[30%] left-[15%] w-[560px] h-[380px] bg-emerald-400/[0.11] rounded-full blur-[130px]" />
-          <div className="absolute top-[20%] right-[10%] w-[380px] h-[280px] bg-sky-400/[0.07] rounded-full blur-[110px]" />
-          <div className="absolute bottom-[20%] left-[40%] w-[460px] h-[320px] bg-emerald-300/[0.07] rounded-full blur-[150px]" />
+        <div className="absolute inset-0 dot-grid" />
+
+        {/* Subtle aurora glow (secondary depth, behind rings) */}
+        <div className="hero-aurora absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[360px] bg-emerald-400/[0.07] rounded-full blur-[140px]" />
+          <div className="absolute top-1/3 right-1/4 w-[260px] h-[180px] bg-sky-400/[0.05] rounded-full blur-[100px]" />
         </div>
-        {/* Single slow-rotating accent ring */}
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[700px] rounded-full border border-emerald-300/[0.06] animate-spin"
-          style={{ animationDuration: "70s" }}
-          aria-hidden="true"
-        />
+
+        {/* Concentric rings centred on section midpoint */}
+        <div className="size-[620px] hero-section-ring" />
+        <div className="size-[820px] hero-section-ring" />
+        <div className="size-[1020px] hero-section-ring" />
+        <div className="size-[1220px] hero-section-ring" />
+
+        {/* Orbiting stars */}
+        <HeroOrbit
+          size={800}
+          rotation={-72}
+          shouldOrbit
+          orbitDuration={32}
+          shoutdSpin
+          spinDuration={8}
+        >
+          <StartIcon className="size-24 text-emerald-300/70" />
+        </HeroOrbit>
+        <HeroOrbit
+          size={550}
+          rotation={20}
+          shouldOrbit
+          orbitDuration={28}
+          shoutdSpin
+          spinDuration={6}
+        >
+          <StartIcon className="size-10 text-emerald-300/60" />
+        </HeroOrbit>
+
+        {/* Orbiting sparkles */}
+        <HeroOrbit
+          size={710}
+          rotation={144}
+          shouldOrbit
+          orbitDuration={36}
+          shoutdSpin
+          spinDuration={3}
+        >
+          <SparkleIcons className="size-12 text-emerald-300/20" />
+        </HeroOrbit>
+        <HeroOrbit
+          size={520}
+          rotation={-40}
+          shouldOrbit
+          orbitDuration={40}
+          shoutdSpin
+          spinDuration={3}
+        >
+          <SparkleIcons className="size-8 text-emerald-300/20" />
+        </HeroOrbit>
+
+        {/* Orbiting dots */}
+        <HeroOrbit size={720} rotation={85} shouldOrbit orbitDuration={44}>
+          <div className="size-3 rounded-full bg-emerald-300/20" />
+        </HeroOrbit>
+        <HeroOrbit size={650} rotation={-5} shouldOrbit orbitDuration={46}>
+          <div className="size-2 rounded-full bg-emerald-300/20" />
+        </HeroOrbit>
       </div>
 
       {/* ── Content ── */}
@@ -171,8 +228,8 @@ export const HeroSection = () => {
           </MagneticButton>
 
           <MagneticButton
-            href="/shahab_ali_ge_cv.pdf"
-            download="shahab_ali_hassan_cv"
+            href="/Shahab_Ali_CV.pdf"
+            download="Shahab_Ali_Hassan_CV"
             className="inline-flex items-center gap-2 border border-[var(--border)] h-12 px-6 rounded-lg font-semibold text-[var(--text)] hover:bg-white/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/30"
           >
             Download CV
