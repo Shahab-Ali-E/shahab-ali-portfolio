@@ -4,9 +4,9 @@ import {
   Settings2,
   Code2,
   Plug,
-  Database,
   Award,
   GraduationCap,
+  ExternalLink,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "../components/SectionHeader";
@@ -21,7 +21,7 @@ const capabilities = [
       "HRSD customization, matching rules & lifecycle automation",
       "Round Robin onboarding / offboarding workflows",
       "Incident & knowledge management configuration",
-      "Agent Workspace enhancements",
+      "CMDB population & Health data-quality",
     ],
   },
   {
@@ -31,8 +31,8 @@ const capabilities = [
     points: [
       "Script Includes, Business Rules, Client Scripts",
       "Glide scripting & server-side API development",
-      "ATF automated test suites",
-      "Update Set lifecycle management",
+      "ATF automated test suites & Update Sets",
+      "Service Portal & UI Builder development",
     ],
   },
   {
@@ -46,17 +46,6 @@ const capabilities = [
       "Scripted REST API + Python-driven Update Set automation",
     ],
   },
-  {
-    icon: Database,
-    label: "Discovery & CMDB",
-    tagline: "Infrastructure Visibility",
-    points: [
-      "MID Server setup & Discovery configuration",
-      "CMDB population & Health data-quality improvement",
-      "Platform Analytics dashboards",
-      "Service Portal & UI Builder development",
-    ],
-  },
 ];
 
 const certifications = [
@@ -64,11 +53,15 @@ const certifications = [
     name: "Welcome to ServiceNow",
     issuer: "ServiceNow",
     type: "Micro-certification",
+    // TODO: paste credential URL from your ServiceNow credentials page
+    url: "#",
   },
   {
     name: "Now Assist Executive",
     issuer: "ServiceNow",
     type: "Micro-certification",
+    // TODO: paste credential URL from your ServiceNow credentials page
+    url: "#",
   },
 ];
 
@@ -87,6 +80,12 @@ const experience = [
   },
 ];
 
+const SubHeading = ({ label }: { label: string }) => (
+  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-5">
+    {label}
+  </p>
+);
+
 export const ServiceNowSection = () => {
   const reduced = useReducedMotion();
 
@@ -101,7 +100,7 @@ export const ServiceNowSection = () => {
         };
 
   return (
-    <section className="py-20 lg:py-32" id="servicenow-section">
+    <section className="py-16 md:py-24" id="servicenow-section">
       <div className="container">
         <SectionHeader
           firstHeading="ServiceNow"
@@ -109,96 +108,111 @@ export const ServiceNowSection = () => {
           paragraph="Two-year track record building, automating, and integrating on the Now Platform."
         />
 
-        {/* Experience timeline strip */}
-        <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-          {experience.map((exp) => (
-            <div
-              key={exp.company}
-              className="flex-1 max-w-xs border border-[var(--border)] rounded-lg px-5 py-4 bg-[var(--surface)]"
-            >
-              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-                {exp.period}
-              </p>
-              <p className="mt-1 font-semibold text-[var(--text)]">{exp.role}</p>
-              <p className="text-sm text-[var(--text-muted)]">{exp.company}</p>
-              <p className="mt-2 text-xs text-[var(--text-muted)] font-medium">
-                {exp.focus}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Capability bento grid */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
-          {capabilities.map((cap, i) => {
-            const Icon = cap.icon;
-            return (
-              <motion.div
-                key={cap.label}
-                {...fadeUp(i)}
-                whileHover={reduced ? {} : { scale: 1.015 }}
+        {/* ── Experience ── */}
+        <div className="mt-14">
+          <SubHeading label="Experience" />
+          <div className="flex flex-col sm:flex-row gap-4">
+            {experience.map((exp) => (
+              <div
+                key={exp.company}
+                className="flex-1 max-w-sm border border-[var(--border)] rounded-lg px-5 py-4 bg-[var(--surface)]"
               >
-                <Card className="p-6 lg:p-8 border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none h-full">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-md bg-emerald-400/10 shrink-0">
-                      <Icon className="size-5 text-emerald-400" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm uppercase tracking-widest text-emerald-400">
-                        {cap.label}
-                      </p>
-                      <p className="text-xs text-[var(--text-muted)]">
-                        {cap.tagline}
-                      </p>
-                    </div>
-                  </div>
-                  <ul className="space-y-2.5">
-                    {cap.points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex gap-2.5 text-sm text-[var(--text-muted)]"
-                      >
-                        <span className="mt-[5px] shrink-0 size-1.5 rounded-full bg-emerald-400 block" />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Certifications + education strip */}
-        <div className="mt-10 flex flex-wrap gap-4 justify-center items-stretch">
-          {certifications.map((cert) => (
-            <div
-              key={cert.name}
-              className="inline-flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)]"
-            >
-              <Award className="size-5 text-emerald-400 shrink-0" aria-hidden="true" />
-              <div>
-                <p className="text-sm font-semibold text-[var(--text)]">
-                  {cert.name}
+                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
+                  {exp.period}
                 </p>
-                <p className="text-xs text-[var(--text-muted)]">
-                  {cert.issuer} · {cert.type}
+                <p className="mt-1 font-semibold text-[var(--text)]">{exp.role}</p>
+                <p className="text-sm text-[var(--text-muted)]">{exp.company}</p>
+                <p className="mt-2 text-xs text-[var(--text-muted)] font-medium">
+                  {exp.focus}
                 </p>
               </div>
-            </div>
-          ))}
-          <div className="inline-flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)]">
-            <GraduationCap
-              className="size-5 text-[var(--accent)] shrink-0"
-              aria-hidden="true"
-            />
-            <div>
-              <p className="text-sm font-semibold text-[var(--text)]">
-                BS Software Engineering
-              </p>
-              <p className="text-xs text-[var(--text-muted)]">
-                COMSATS University Islamabad · 2021–2025
-              </p>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Capabilities bento ── */}
+        <div className="mt-12">
+          <SubHeading label="What I Build on the Now Platform" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {capabilities.map((cap, i) => {
+              const Icon = cap.icon;
+              return (
+                <motion.div
+                  key={cap.label}
+                  {...fadeUp(i)}
+                  whileHover={reduced ? {} : { scale: 1.015 }}
+                >
+                  <Card className="p-6 border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none h-full">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="flex items-center justify-center w-9 h-9 rounded-md bg-emerald-400/10 shrink-0">
+                        <Icon className="size-5 text-emerald-400" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-sm uppercase tracking-widest text-emerald-400">
+                          {cap.label}
+                        </p>
+                        <p className="text-xs text-[var(--text-muted)]">{cap.tagline}</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-2.5">
+                      {cap.points.map((point) => (
+                        <li
+                          key={point}
+                          className="flex gap-2.5 text-sm text-[var(--text-muted)]"
+                        >
+                          <span className="mt-[5px] shrink-0 size-1.5 rounded-full bg-emerald-400 block" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── Certifications & Education ── */}
+        <div className="mt-12">
+          <SubHeading label="Certifications & Education" />
+          <div className="flex flex-wrap gap-4 items-stretch">
+            {certifications.map((cert) => (
+              <a
+                key={cert.name}
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${cert.name} credential`}
+                className="inline-flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)] hover:border-emerald-400/40 hover:bg-emerald-400/5 transition-colors group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
+              >
+                <Award className="size-5 text-emerald-400 shrink-0" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-semibold text-[var(--text)] group-hover:text-emerald-300 transition-colors">
+                    {cert.name}
+                  </p>
+                  <p className="text-xs text-[var(--text-muted)]">
+                    {cert.issuer} · {cert.type}
+                  </p>
+                </div>
+                <ExternalLink
+                  className="size-3.5 text-[var(--text-muted)] group-hover:text-emerald-400 transition-colors ml-1 shrink-0"
+                  aria-hidden="true"
+                />
+              </a>
+            ))}
+            <div className="inline-flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)]">
+              <GraduationCap
+                className="size-5 text-[var(--accent)] shrink-0"
+                aria-hidden="true"
+              />
+              <div>
+                <p className="text-sm font-semibold text-[var(--text)]">
+                  BS Software Engineering
+                </p>
+                <p className="text-xs text-[var(--text-muted)]">
+                  COMSATS University Islamabad · 2021–2025
+                </p>
+              </div>
             </div>
           </div>
         </div>
