@@ -88,11 +88,11 @@ const backendTools: ToolboxItem[] = [
 ];
 
 const hobbies: HobbiesItem[] = [
-  { title: "Gaming", emoji: "🎮", top: "10%", left: "23%" },
-  { title: "Gym", emoji: "🏋️", top: "40%", left: "27%" },
-  { title: "Tourism", emoji: "🌍", top: "25%", left: "70%" },
-  { title: "Music", emoji: "🎵", top: "70%", left: "23%" },
-  { title: "Photography", emoji: "📷", top: "60%", left: "71%" },
+  { title: "Gaming", emoji: "🎮", top: "15%", left: "20%" },
+  { title: "Gym", emoji: "🏋️", top: "45%", left: "30%" },
+  { title: "Tourism", emoji: "🌍", top: "20%", left: "65%" },
+  { title: "Music", emoji: "🎵", top: "70%", left: "18%" },
+  { title: "Photography", emoji: "📷", top: "65%", left: "68%" },
 ];
 
 export const AboutSection = () => {
@@ -110,7 +110,7 @@ export const AboutSection = () => {
         };
 
   return (
-    <section className="py-20 lg:py-32" id="about-section">
+    <section className="py-16 md:py-24" id="about-section">
       <div className="container">
         <SectionHeader
           firstHeading="About Me"
@@ -118,44 +118,38 @@ export const AboutSection = () => {
           paragraph="Learn more about who I am, what I do, and what inspires me."
         />
 
-        <div className="mt-16 flex flex-col gap-8">
-          {/* Row 1 */}
+        <div className="mt-14 flex flex-col gap-8">
+          {/* Row 1: Bio + Toolbox */}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-6">
-            {/* Bio card */}
-            <motion.div
-              className="md:col-span-2 lg:col-span-2"
-              {...fadeUp(0)}
-            >
-              <Card className="p-6 lg:p-8 h-[320px] flex flex-col border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
+            {/* Bio card — auto height, never clips */}
+            <motion.div className="md:col-span-2 lg:col-span-2" {...fadeUp(0)}>
+              <Card className="p-6 lg:p-7 flex flex-col min-h-[260px] border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
                 <CardHeader
                   title="Who I Am"
                   description="ServiceNow developer with full-stack roots"
                 />
-                <div className="mt-4 flex flex-col gap-3 text-sm text-[var(--text-muted)]">
+                <div className="mt-4 flex flex-col gap-3 text-sm text-[var(--text-muted)] flex-1">
                   <p>
                     Building HRSD workflows, Discovery & CMDB automation at Tekdex.
                     Previously shipped production integrations at Techrystal connecting
                     ServiceNow to FreshService, Jira, Slack, and Salesforce.
                   </p>
-                  <div className="flex items-center gap-2 mt-auto">
-                    <MapPin className="size-4 text-emerald-400 shrink-0" aria-hidden="true" />
+                  <div className="flex items-start gap-2 mt-auto pt-3">
+                    <MapPin className="size-4 text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
                     <span>Rawalpindi, Pakistan · Open to NZ relocation</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Building2 className="size-4 text-emerald-400 shrink-0" aria-hidden="true" />
+                  <div className="flex items-start gap-2">
+                    <Building2 className="size-4 text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
                     <span>BS Software Engineering · COMSATS 2021–2025</span>
                   </div>
                 </div>
               </Card>
             </motion.div>
 
-            {/* Toolbox */}
-            <motion.div
-              className="md:col-span-3 lg:col-span-4"
-              {...fadeUp(0.1)}
-            >
-              <Card className="h-[320px] border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
-                <div className="px-6 pt-6">
+            {/* Toolbox card — min-height accommodates 3 marquee rows */}
+            <motion.div className="md:col-span-3 lg:col-span-4" {...fadeUp(0.1)}>
+              <Card className="min-h-[260px] border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none overflow-hidden">
+                <div className="px-6 pt-6 pb-2">
                   <CardHeader
                     title="My Toolbox"
                     description="Technologies I use across ServiceNow, frontend, and backend."
@@ -163,32 +157,29 @@ export const AboutSection = () => {
                 </div>
                 <ToolBoxItem
                   items={serviceNowTools}
-                  className="mt-5"
-                  itemWrapperClassName="animate-tape-marquee [animation-duration:28s] pr-6 hover:[animation-play-state:paused]"
+                  className="mt-4"
+                  itemWrapperClassName="animate-tape-marquee [animation-duration:30s] hover:[animation-play-state:paused]"
                 />
                 <ToolBoxItem
                   items={frontendTools}
-                  className="mt-4"
-                  itemWrapperClassName="animate-move-right [animation-duration:22s] pr-6 hover:[animation-play-state:paused]"
+                  className="mt-3"
+                  itemWrapperClassName="animate-move-right [animation-duration:22s] hover:[animation-play-state:paused]"
                 />
                 <ToolBoxItem
                   items={backendTools}
-                  className="mt-4"
-                  itemWrapperClassName="animate-tape-marquee [animation-duration:26s] pr-6 hover:[animation-play-state:paused]"
+                  className="mt-3 mb-5"
+                  itemWrapperClassName="animate-tape-marquee [animation-duration:28s] hover:[animation-play-state:paused]"
                 />
               </Card>
             </motion.div>
           </div>
 
-          {/* Row 2 */}
+          {/* Row 2: Hobbies + Map */}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-6">
-            {/* Hobbies */}
-            <motion.div
-              className="md:col-span-3 lg:col-span-4"
-              {...fadeUp(0.2)}
-            >
-              <Card className="h-[320px] flex flex-col border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
-                <div className="p-6">
+            {/* Hobbies — fixed height for drag area */}
+            <motion.div className="md:col-span-3 lg:col-span-4" {...fadeUp(0.2)}>
+              <Card className="h-[300px] flex flex-col border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none">
+                <div className="p-6 pb-3">
                   <CardHeader
                     title="Beyond The Code"
                     description="Interests and hobbies beyond the digital realm"
@@ -198,7 +189,7 @@ export const AboutSection = () => {
                   {hobbies.map((ele, index) => (
                     <motion.div
                       key={index}
-                      className="absolute flex items-center gap-2 bg-gradient-to-t from-emerald-300 to-sky-400 rounded-full py-1.5 px-4 shadow-lg cursor-grab active:cursor-grabbing"
+                      className="absolute flex items-center gap-2 bg-gradient-to-t from-emerald-300 to-sky-400 rounded-full py-1.5 px-4 shadow-lg cursor-grab active:cursor-grabbing select-none"
                       style={{
                         top: ele.top,
                         left: ele.left,
@@ -208,8 +199,12 @@ export const AboutSection = () => {
                       dragConstraints={constraintRef}
                       aria-label={`Hobby: ${ele.title}`}
                     >
-                      <span className="text-gray-900 font-extrabold">{ele.title}</span>
-                      <span className="text-lg" aria-hidden="true">{ele.emoji}</span>
+                      <span className="text-gray-900 font-extrabold text-sm">
+                        {ele.title}
+                      </span>
+                      <span className="text-base" aria-hidden="true">
+                        {ele.emoji}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -217,16 +212,14 @@ export const AboutSection = () => {
             </motion.div>
 
             {/* Map */}
-            <motion.div
-              className="md:col-span-2 lg:col-span-2"
-              {...fadeUp(0.3)}
-            >
-              <Card className="relative z-0 h-full border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none overflow-hidden cursor-pointer">
+            <motion.div className="md:col-span-2 lg:col-span-2" {...fadeUp(0.3)}>
+              <Card className="relative z-0 h-[300px] md:h-full border border-[var(--border)] bg-[var(--surface)] rounded-xl outline-none overflow-hidden cursor-pointer">
                 <a
                   href="https://www.google.com/maps?q=33.783220,72.352906"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View location on Google Maps — Rawalpindi, Pakistan"
+                  className="block h-full"
                 >
                   <Image
                     src={MapImage}
