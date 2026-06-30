@@ -50,18 +50,39 @@ const capabilities = [
 
 const certifications = [
   {
-    name: "Welcome to ServiceNow",
+    name: "Automated Test Framework",
     issuer: "ServiceNow",
     type: "Micro-certification",
-    // TODO: paste credential URL from your ServiceNow credentials page
-    url: "#",
+    issued: "May 2026",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+  {
+    name: "CMDB Health",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "Apr 2026",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+  {
+    name: "Configure the CMDB",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "Mar 2026",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
   },
   {
     name: "Now Assist Executive",
     issuer: "ServiceNow",
     type: "Micro-certification",
-    // TODO: paste credential URL from your ServiceNow credentials page
-    url: "#",
+    issued: "Jul 2025",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+  {
+    name: "Welcome to ServiceNow",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "Jul 2025",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
   },
 ];
 
@@ -172,47 +193,52 @@ export const ServiceNowSection = () => {
           </div>
         </div>
 
-        {/* ── Certifications & Education ── */}
+        {/* ── Certifications ── */}
         <div className="mt-12">
-          <SubHeading label="Certifications & Education" />
-          <div className="flex flex-wrap gap-4 items-stretch">
+          <SubHeading label="Certifications" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {certifications.map((cert) => (
               <a
                 key={cert.name}
                 href={cert.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`View ${cert.name} credential`}
-                className="inline-flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)] hover:border-emerald-400/40 hover:bg-emerald-400/5 transition-colors group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
+                aria-label={`View ${cert.name} certification on LinkedIn`}
+                className="flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)] hover:border-emerald-400/40 hover:bg-emerald-400/5 transition-colors group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
               >
                 <Award className="size-5 text-emerald-400 shrink-0" aria-hidden="true" />
-                <div>
-                  <p className="text-sm font-semibold text-[var(--text)] group-hover:text-emerald-300 transition-colors">
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-[var(--text)] group-hover:text-emerald-300 transition-colors truncate">
                     {cert.name}
                   </p>
                   <p className="text-xs text-[var(--text-muted)]">
-                    {cert.issuer} · {cert.type}
+                    {cert.type} · <span className="text-emerald-400/80">{cert.issued}</span>
                   </p>
                 </div>
                 <ExternalLink
-                  className="size-3.5 text-[var(--text-muted)] group-hover:text-emerald-400 transition-colors ml-1 shrink-0"
+                  className="size-3.5 text-[var(--text-muted)] group-hover:text-emerald-400 transition-colors shrink-0"
                   aria-hidden="true"
                 />
               </a>
             ))}
-            <div className="inline-flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)]">
-              <GraduationCap
-                className="size-5 text-[var(--accent)] shrink-0"
-                aria-hidden="true"
-              />
-              <div>
-                <p className="text-sm font-semibold text-[var(--text)]">
-                  BS Software Engineering
-                </p>
-                <p className="text-xs text-[var(--text-muted)]">
-                  COMSATS University Islamabad · 2021–2025
-                </p>
-              </div>
+          </div>
+        </div>
+
+        {/* ── Education ── */}
+        <div className="mt-10">
+          <SubHeading label="Education" />
+          <div className="inline-flex items-center gap-3 border border-[var(--border)] rounded-lg px-5 py-3 bg-[var(--surface)]">
+            <GraduationCap
+              className="size-5 text-[var(--accent)] shrink-0"
+              aria-hidden="true"
+            />
+            <div>
+              <p className="text-sm font-semibold text-[var(--text)]">
+                BS Software Engineering
+              </p>
+              <p className="text-xs text-[var(--text-muted)]">
+                COMSATS University Islamabad · 2021–2025
+              </p>
             </div>
           </div>
         </div>
