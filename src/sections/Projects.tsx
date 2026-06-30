@@ -48,8 +48,7 @@ import FramerMotionIcon from "../assets/icons/framer-motion.svg";
 import PythonIcon from "../assets/icons/python.svg";
 
 import ToolUsedIcons from "../components/ToolUsedIcons";
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const portfolioProjects = [
   {
@@ -144,30 +143,18 @@ const portfolioProjects = [
 ];
 
 export const ProjectsSection = () => {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
-
   return (
-    <section ref={container} className="pb-16 lg:py-20" id="project-section">
+    <section className="py-16 md:py-24" id="project-section">
       <div className="container">
         <SectionHeader
           firstHeading="Projects"
           mainHeading="Featured Work"
-          paragraph="Full-stack and AI projects — from enterprise data pipelines to AI-powered mobile apps."
+          paragraph="Full-stack and AI side projects built before and alongside my ServiceNow career — separate from professional platform work."
         />
 
-        <div className="flex flex-col items-center mt-20 md:mt-24">
+        <div className="flex flex-col gap-8 mt-16 md:mt-20">
           {portfolioProjects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              index={index}
-              scrollYProgress={scrollYProgress}
-              project={project}
-              totalProjects={portfolioProjects.length}
-            />
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>
@@ -176,95 +163,80 @@ export const ProjectsSection = () => {
 };
 
 const ProjectCard = ({
-  index,
-  scrollYProgress,
   project,
-  totalProjects,
+  index,
 }: {
+  project: (typeof portfolioProjects)[number];
   index: number;
-  scrollYProgress: any;
-  project: any;
-  totalProjects: number;
 }) => {
   const reduced = useReducedMotion();
-  const targetScale = 1 - (totalProjects - index) * 0.05;
-  const scale = useTransform(
-    scrollYProgress,
-    [index / totalProjects, 1],
-    [1, targetScale]
-  );
 
   return (
-    <div className="h-screen flex items-center justify-center sticky top-20">
-      <motion.div
-        className="flex flex-col relative h-full w-full origin-top"
-        style={{
-          top: `calc(-5vh + ${index * 25}px)`,
-          scale: reduced ? 1 : scale,
-        }}
-      >
-        <Card className="relative pt-8 md:pt-11 px-8 md:px-10 lg:pt-16 lg:px-20 border border-[var(--border)] bg-[var(--surface)] rounded-2xl outline-none">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-16">
-            {/* Left section */}
-            <div className="lg:pb-16">
-              <div className="md:mt-2 inline-flex gap-2 font-bold bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent tracking-widest uppercase text-sm">
-                <span>{project.company}</span>
-                <span>&bull;</span>
-                <span>{project.year}</span>
-              </div>
-
-              <h3 className="font-serif mt-2 text-2xl md:text-4xl md:mt-5 text-[var(--text)]">
-                {project.title}
-              </h3>
-              <hr className="mt-4 border-t border-[var(--border)]" />
-
-              <ul className="flex flex-col space-y-4 justify-center mt-4 md:mt-6">
-                {project.results.map((result: any, i: number) => (
-                  <li
-                    key={i}
-                    className="text-sm md:text-base items-center inline-flex text-[var(--text-muted)] gap-2"
-                  >
-                    <CheckCircle className="size-5 md:size-6 shrink-0 text-emerald-400" />
-                    {result.title}
-                  </li>
-                ))}
-              </ul>
-
-              <ul className="flex justify-start mt-4 md:mt-6 gap-4 flex-wrap">
-                {project.tools?.map((Icon: any, i: number) => (
-                  <li key={i} className="inline-flex">
-                    <ToolUsedIcons Component={Icon} />
-                  </li>
-                ))}
-              </ul>
-
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
-                <button className="inline-flex w-full sm:w-full md:w-auto sm:mx-auto px-6 items-center justify-center gap-2 bg-[var(--primary)] text-gray-950 h-12 rounded-lg font-bold mt-8 hover:bg-[var(--primary-soft)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]">
-                  View <ArrowUpRight className="size-4" aria-hidden="true" />
-                </button>
-              </a>
+    <motion.div
+      initial={reduced ? {} : { opacity: 0, y: 40 }}
+      whileInView={reduced ? {} : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.3), ease: "easeOut" }}
+      viewport={{ once: true, margin: "-8%" }}
+      className="w-full"
+    >
+      <Card className="pt-8 md:pt-11 px-8 md:px-10 lg:pt-14 lg:px-16 border border-[var(--border)] bg-[var(--surface)] rounded-2xl outline-none">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-16">
+          {/* Left: info */}
+          <div className="lg:pb-14">
+            <div className="md:mt-2 inline-flex gap-2 font-bold bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent tracking-widest uppercase text-sm">
+              <span>{project.company}</span>
+              <span>&bull;</span>
+              <span>{project.year}</span>
             </div>
 
-            {/* Right image — desktop */}
-            <div className="absolute sm:hidden md:hidden lg:block right-0 w-1/2">
-              <ProductFeatures image1={project.image1} image2={project.image2} />
-            </div>
+            <h3 className="font-serif mt-2 text-2xl md:text-3xl md:mt-4 text-[var(--text)]">
+              {project.title}
+            </h3>
+            <hr className="mt-4 border-t border-[var(--border)]" />
 
-            {/* Right image — mobile/tablet */}
-            <div
-              className={`sm:block md:block lg:hidden ${
-                index === 0 ? "h-[191px] md:h-full" : "h-[198px] md:h-full"
-              } overflow-hidden`}
-            >
-              <Image
-                src={project.image1}
-                alt={project.title}
-                className="mt-8 lg:mt-0 lg:absolute lg:w-[67%] lg:h-full"
-              />
-            </div>
+            <ul className="flex flex-col space-y-3 mt-4 md:mt-5">
+              {project.results.map((result, i) => (
+                <li
+                  key={i}
+                  className="text-sm md:text-base items-center inline-flex text-[var(--text-muted)] gap-2"
+                >
+                  <CheckCircle className="size-5 shrink-0 text-emerald-400" aria-hidden="true" />
+                  {result.title}
+                </li>
+              ))}
+            </ul>
+
+            <ul className="flex justify-start mt-4 md:mt-5 gap-3 flex-wrap">
+              {project.tools?.map((Icon, i) => (
+                <li key={i} className="inline-flex">
+                  <ToolUsedIcons Component={Icon} />
+                </li>
+              ))}
+            </ul>
+
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <button className="inline-flex w-full md:w-auto px-6 items-center justify-center gap-2 bg-[var(--primary)] text-gray-950 h-12 rounded-lg font-bold mt-7 hover:bg-[var(--primary-soft)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]">
+                View <ArrowUpRight className="size-4" aria-hidden="true" />
+              </button>
+            </a>
           </div>
-        </Card>
-      </motion.div>
-    </div>
+
+          {/* Right: image — desktop */}
+          <div className="hidden lg:block absolute right-0 w-1/2">
+            <ProductFeatures image1={project.image1} image2={project.image2} />
+          </div>
+
+          {/* Right: image — mobile / tablet */}
+          <div className="lg:hidden h-[180px] md:h-[220px] overflow-hidden mt-6">
+            <Image
+              src={project.image1}
+              alt={`${project.title} screenshot`}
+              className="w-full h-full object-cover object-top rounded-xl"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </Card>
+    </motion.div>
   );
 };
