@@ -62,7 +62,7 @@ Before coding, read: `src/sections/Hero.tsx`, `src/sections/ServiceNow.tsx`,
 - Verify the "Beyond the Code" draggable hobby bubbles stay inside the map card at every breakpoint.
 
 ## Cross-cutting
-- **CV link mismatch:** the hero "Download CV" links to `/shahab_ali_ge_cv.pdf`, but there are several CV files in `public/`. Standardise on **one** CV file (e.g. `public/Shahab_Ali_CV.pdf`), point the hero button at it, and delete the stale duplicates. Verify the download works.
+- **CV link mismatch:** the hero "Download CV" links to `/shahab_ali_ge_cv.pdf`, but there are several CV files in `public/`. Standardise on **one** CV file (e.g. `public/Shahab_CV.pdf`), point the hero button at it, and delete the stale duplicates. Verify the download works.
 - Full **responsive** pass at 375 / 768 / 1200 / wide; no horizontal scroll anywhere.
 - Keep AA contrast; keyboard focus visible on all links/buttons.
 - `npm run lint` and `npm run build` must pass.

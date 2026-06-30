@@ -7,7 +7,7 @@ export const Footer = () => {
     // TODO: confirm this LinkedIn URL is correct
     { title: "LinkedIn", href: "http://www.linkedin.com/in/shahab-ali-9626812b6" },
     { title: "Email", href: "mailto:shahabalihassan46@gmail.com" },
-    { title: "CV", href: "/Shahab_Ali_CV.pdf", download: "Shahab_Ali_Hassan_CV" },
+    { title: "CV", href: "/Shahab_CV.pdf", download: "Shahab_Ali_Hassan_CV" },
   ];
 
   return (

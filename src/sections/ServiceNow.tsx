@@ -69,8 +69,8 @@ const experience = [
   {
     role: "ServiceNow Developer",
     company: "Tekdex",
-    period: "Feb 2025 – Present",
-    focus: "HRSD · Discovery · CMDB · ATF",
+    period: "Feb 2026 – Present",
+    focus: "HRSD · ITSM · ATF",
   },
   {
     role: "ServiceNow Developer",
@@ -105,7 +105,7 @@ export const ServiceNowSection = () => {
         <SectionHeader
           firstHeading="ServiceNow"
           mainHeading="Enterprise Platform Expertise"
-          paragraph="Two-year track record building, automating, and integrating on the Now Platform."
+          paragraph="One-year track record building, automating, and integrating on the Now Platform."
         />
 
         {/* ── Experience ── */}

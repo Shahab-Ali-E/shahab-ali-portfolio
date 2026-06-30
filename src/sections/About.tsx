@@ -136,11 +136,7 @@ export const AboutSection = () => {
                   </p>
                   <div className="flex items-start gap-2 mt-auto pt-3">
                     <MapPin className="size-4 text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
-                    <span>Rawalpindi, Pakistan · Open to NZ relocation</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Building2 className="size-4 text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
-                    <span>BS Software Engineering · COMSATS 2021–2025</span>
+                    <span>Rawalpindi, Pakistan · Open to relocation</span>
                   </div>
                 </div>
               </Card>

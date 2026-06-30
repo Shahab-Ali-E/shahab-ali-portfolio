@@ -228,7 +228,7 @@ export const HeroSection = () => {
           </MagneticButton>
 
           <MagneticButton
-            href="/Shahab_Ali_CV.pdf"
+            href="/Shahab_CV.pdf"
             download="Shahab_Ali_Hassan_CV"
             className="inline-flex items-center gap-2 border border-[var(--border)] h-12 px-6 rounded-lg font-semibold text-[var(--text)] hover:bg-white/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/30"
           >
