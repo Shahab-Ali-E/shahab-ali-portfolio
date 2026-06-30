@@ -36,10 +36,14 @@ Before coding, read: `src/sections/Hero.tsx`, `src/sections/ServiceNow.tsx`,
 - Give the section a clear, labelled internal hierarchy with small sub-headings, in this order:
   1. **Experience** (the two roles — keep the timeline cards, label the block "Experience")
   2. **What I do on the Now Platform** (the capability bento)
-  3. **Certifications & Education** (label it)
+  3. **Certifications** (label it) — see the dedicated treatment below
+  4. **Education** (label it) — its **own separate block**, visually distinct from Certifications
 - **Remove the "Discovery & CMDB" capability card entirely.** You now have 3 capability cards — fix the grid so it doesn't look lopsided (e.g. `md:grid-cols-3`, or 2-up with the third centred). Re-home the still-true points that were only in the removed card (e.g. *Service Portal & UI Builder*, *Platform Analytics dashboards*) into the most relevant remaining card so that info isn't lost.
-- Make each **certification a clickable link** that opens the credential in a new tab: add a `url` field to each cert object, render the card as `<a href={url} target="_blank" rel="noopener noreferrer">` with a small external-link icon and a visible focus ring. Where I haven't given you a URL, insert `// TODO: paste credential URL` and a `#` placeholder so it's obvious. Education stays a non-link card.
-- Make sure the three blocks are visually distinct (spacing + sub-heading) so the meaning is instantly clear.
+- **Separate Education from Certifications (currently they share one strip).** Render two clearly-labelled, visually-distinct blocks: a **"Certifications"** block (the two ServiceNow micro-certs) and a separate **"Education"** block below it (BS Software Engineering — non-link). Do NOT mix the degree in with the certs.
+- **Certifications must be clickable links.** The individual micro-certification credential URLs are not available, so link **both** cert cards to my LinkedIn certifications page:
+  `https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/`
+  Render each cert card as `<a href="https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/" target="_blank" rel="noopener noreferrer">` with a small external-link icon, an `aria-label` like "View Welcome to ServiceNow certification on LinkedIn", and a visible focus ring. (If I later supply per-cert Credly/credential URLs, swapping the `href` should be the only change — keep a `url` field on each cert object so it's easy.)
+- Make sure all blocks (Experience / Capabilities / Certifications / Education) are visually distinct (spacing + sub-heading) so the meaning is instantly clear.
 
 ## Bug 4 — Projects section stutters / feels laggy on scroll
 **Root cause:** in `Projects.tsx` every project card is `h-screen sticky top-20` with a **per-card** `useScroll` + `useTransform` scale (the stacked-cards-on-scroll effect). Scroll-linked scaling of full-viewport sticky cards — multiplied across cards and layered on top of Lenis smooth scroll — thrashes layout/paint and causes the stutter.
@@ -70,10 +74,76 @@ Before coding, read: `src/sections/Hero.tsx`, `src/sections/ServiceNow.tsx`,
 ## Acceptance checklist (confirm each when done)
 - [ ] Hero rings are centred behind the content with orbiting stars/sparkles restored, subtle and balanced; no undefined CSS classes; no mobile overflow; motion off under reduced-motion.
 - [ ] Spacing between hero and ServiceNow (and between all sections) is tight and consistent.
-- [ ] ServiceNow section has labelled Experience / Capabilities / Certifications-&-Education blocks; "Discovery & CMDB" card removed and its real points re-homed; certs are working external links.
+- [ ] ServiceNow section has labelled Experience / Capabilities blocks; "Discovery & CMDB" card removed and its real points re-homed.
+- [ ] **Certifications** and **Education** are two separate, clearly-labelled blocks (degree no longer mixed with certs); both cert cards link to the LinkedIn certifications page in a new tab with accessible labels.
 - [ ] Projects scrolls smoothly with no stutter; sticky-scale removed/lightened; copy reframed as pre/alongside-SNOW side projects.
 - [ ] About cards no longer clip text; toolbox marquees loop seamlessly and are masked on both edges; hobby bubbles contained.
 - [ ] Download CV works; responsive at all breakpoints; lint + build pass.
 - [ ] Small, descriptive commits; tell me anything you intentionally changed in content or couldn't complete.
 
 **Start by reading the listed files and giving me a 1-line root-cause confirmation per bug + your fix plan before large edits.**
+
+---
+
+# Fix — Update Certifications (add all 5 ServiceNow micro-certs)
+
+> Self-contained task. Run from repo root. Keep Next.js 14 + Tailwind + Framer Motion. `npm run build` and `npm run lint` must stay green. Read `src/sections/ServiceNow.tsx` first.
+ **Separate Education from Certifications (currently they share one strip).** Render two clearly-labelled, visually-distinct blocks:
+
+**Problem:** the `certifications` array in `src/sections/ServiceNow.tsx` only lists **2** certs ("Welcome to ServiceNow" and "Now Assist Executive"). I've earned **5**. Add the missing ones and show them **newest-first**.
+
+**Fix:**
+- Replace the `certifications` array (around line 51) with all 5 certs below, ordered **newest → oldest** by issue date. Keep the same object shape (`name`, `issuer`, `type`, `url`) and add an `issued` field for the date:
+
+```ts
+const certifications = [
+  {
+    name: "Automated Test Framework",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "May 2026",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+  {
+    name: "CMDB Health",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "Apr 2026",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+  {
+    name: "Configure the CMDB",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "Mar 2026",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+  {
+    name: "Now Assist Executive",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "Jul 2025",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+  {
+    name: "Welcome to ServiceNow",
+    issuer: "ServiceNow",
+    type: "Micro-certification",
+    issued: "Jul 2025",
+    url: "https://www.linkedin.com/in/shahab-ali-9626812b6/details/certifications/",
+  },
+];
+```
+
+- Each cert card stays a clickable `<a href={cert.url} target="_blank" rel="noopener noreferrer">` with an accessible `aria-label` like `View ${cert.name} certification on LinkedIn`, a small external-link icon, and a visible focus ring (keep the existing markup — just make sure it still maps over all 5).
+- Show the `issued` date on each card (small muted text, e.g. under the name or as a badge) so the timeline reads clearly. Keep "Micro-certification" as the type label.
+- With 5 cards the grid must not look lopsided: use a responsive grid that wraps cleanly (e.g. `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`) with no empty/awkward gaps at any breakpoint (375 / 768 / 1200 / wide).
+- Do **not** mix Education into this block — Certifications stays its own labelled block.
+- If per-cert ServiceNow/Credly credential URLs are added later, swapping each `url` is the only change needed — keep the `url` field per cert.
+
+**Acceptance:**
+- [ ] **Certifications** and **Education** are two separate, clearly-labelled blocks (degree no longer mixed with certs); 
+- [ ] All 5 certs render, newest-first (Automated Test Framework → CMDB Health → Configure the CMDB → Now Assist Executive → Welcome to ServiceNow).
+- [ ] Each card links to the LinkedIn certifications page in a new tab with an accessible label + visible focus ring.
+- [ ] Issue dates shown; grid wraps cleanly with no lopsided gaps at 375 / 768 / 1200 / wide.
+- [ ] `npm run lint` and `npm run build` pass; small, descriptive commit.
